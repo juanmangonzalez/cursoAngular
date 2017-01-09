@@ -11,7 +11,7 @@ LunchCheckController.$inject = ['$scope'];
 function LunchCheckController ($scope) {
 $scope.list = "";
 $scope.result = "";
-
+$scope.state = "";
   $scope.checkIsEnough = function() {
     var count = 0;
     var meals = $scope.list.split(',');
@@ -20,8 +20,14 @@ $scope.result = "";
           count++;
         }
     }
-
-    $scope.result = count>3?"mucho":"poco";
+    if(count>0){
+      $scope.state = 'OK';
+      $scope.result = count > 3 ? "Too much!" : "Enjoy!";
+    }
+    else {
+      $scope.state = 'ERROR';
+      $scope.result = "Please enter data first";
+    }
 
   };
 

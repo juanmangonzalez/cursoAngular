@@ -5,20 +5,26 @@
     <title>Hello guys</title>
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
+    <style>
+      .color-red { color: red;}
+      .color-green { color: green;}
+    </style>
   </head>
   <body ng-app='LunchCheck'>
     <div class="container">
       <h1>Lunch Checker</h1>
+      <h6>(empty item is not consider)</h6>
 		<div ng-controller="LunchCheckController">
 		  <div class="form-group">
 				 <input id="lunch-menu" type="text" ng-model="list"
 				 placeholder="list comma separated dishes you usually have for lunch"
 				 class="form-control">
 			 </div>
+       <br />
 			 <div class="form-group">
 				 <button class="btn btn-default" ng-click="checkIsEnough()">Check If Too Much</button>
 			 </div>
-			 <div class="form-group message">
+			 <div ng-class="{'color-red': state === 'ERROR', 'color-green': state === 'OK'}">
 			   {{result}}
 			 </div>
 		</div>
